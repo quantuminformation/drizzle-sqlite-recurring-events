@@ -1,12 +1,11 @@
-import { relations, sql } from 'drizzle-orm'
-import { integer, primaryKey, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
-
+import { relations, sql } from 'drizzle-orm';
+import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const event = sqliteTable('event', {
-  id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  id: integer('id').primaryKey({ autoIncrement: true }),
   name: text('name').notNull(),
   startTime: integer('start_time', { mode: 'timestamp' }).notNull(),
-  endTime: integer('start_time', { mode: 'timestamp' }).notNull(),
+  endTime: integer('end_time', { mode: 'timestamp' }).notNull(),
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
       .notNull()
       .default(sql`CURRENT_TIMESTAMP`),
@@ -14,9 +13,8 @@ export const event = sqliteTable('event', {
       .notNull()
       .default(sql`CURRENT_TIMESTAMP`),
   deletedAt: integer('deleted_at', { mode: 'timestamp_ms' }),
-  is_recurring: text('is_recurring', { mode: 'boolean' }),
-})
-
+  is_recurring: integer('is_recurring', { mode: 'boolean' }),
+});
 
 // Define the recurring_type table
 export const recurring_type = sqliteTable('recurring_type', {
@@ -34,7 +32,6 @@ export const recurring_pattern = sqliteTable('recurring_pattern', {
   day_of_month: integer('day_of_month'),
   month_of_year: integer('month_of_year'),
   recurring_type_id: integer('recurring_type_id').references(() => recurring_type.id),
-
 }, table => ({
   pk: primaryKey({ columns: [table.event_id] }),
 }));
