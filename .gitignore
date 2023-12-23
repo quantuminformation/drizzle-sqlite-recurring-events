@@ -1,0 +1,28 @@
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.launch
+.settings/
+.vscode
+
+# generated files
+sqlite.db
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Config
+.env
+
+# remix
+/.cache
+/build
+/public/build
+
+mydb.sqlite
+*.db-journal
