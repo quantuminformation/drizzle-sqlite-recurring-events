@@ -1,26 +1,20 @@
-import { db, schema } from './db.server'
+import { db, schema } from './db'
+import { Event } from './schema'
+import {dayZeroOneHourEvent} from "../test/test-constants";
 
+// Seed function
+export async function seedDatabase() {
+  // Insert event
+  const events = await db.insert(schema.event).values([dayZeroOneHourEvent]).returning()
 
-
-const events = await db
-    .insert(schema.event)
-    .values([
-        {
-            name: 'Event 1',
-            startTime: new Date(2025, 1, 1, 19, 0, 0),
-            endTime: new Date(2025, 1, 1, 20, 0, 0),
-        },
-    ])
+  // Insert recurring types
+  await db
+    .insert(schema.recurring_type)
+    .values([{ type: 'Daily' }, { type: 'Weekly' }, { type: 'Monthly' }, { type: 'Yearly' }])
     .returning()
 
-/* await db
-    .insert(schema.recurring_type)
-    .values([
-        { recurring_type: 'Daily' },
-        { recurring_type: 'Weekly' },
-        { recurring_type: 'Monthly' },
-        { recurring_type: 'Yearly' },
-    ])
-    .returning() */
+  console.log('Seed complete!', events)
+}
 
-console.log('Seed complete!')
+// Call the seed function
+seedDatabase().catch(console.error)
