@@ -7,8 +7,8 @@ const events = await db
     .values([
         {
             name: 'Event 1',
-            startTime: new Date(2025, 1, 1, 19, 0, 0).getTime(),
-            endTime: new Date(2025, 1, 1, 20, 0, 0).getTime(),
+            startTime: new Date(2025, 1, 1, 19, 0, 0),
+            endTime: new Date(2025, 1, 1, 20, 0, 0),
         },
     ])
     .returning()
