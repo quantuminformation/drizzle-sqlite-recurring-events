@@ -11,9 +11,9 @@ const events = await db
             endTime: new Date(2025, 1, 1, 20, 0, 0).getTime(),
         },
     ])
-    .returning('*')
+    .returning()
 
-await db
+/* await db
     .insert(schema.recurring_type)
     .values([
         { recurring_type: 'Daily' },
@@ -21,6 +21,6 @@ await db
         { recurring_type: 'Monthly' },
         { recurring_type: 'Yearly' },
     ])
-    .returning()
+    .returning() */
 
 console.log('Seed complete!')
