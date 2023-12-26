@@ -1,6 +1,6 @@
 import { db, schema } from './db'
 import { Event } from './schema'
-import {dayZeroOneHourEvent} from "../test/test-constants";
+import { dayZeroOneHourEvent } from '../test/test-constants'
 
 // Seed function
 export async function seedDatabase() {
@@ -13,7 +13,7 @@ export async function seedDatabase() {
     .values([{ type: 'Daily' }, { type: 'Weekly' }, { type: 'Monthly' }, { type: 'Yearly' }])
     .returning()
 
-  console.log('Seed complete!', events)
+  console.log('Seed complete!')
 }
 
 // Call the seed function

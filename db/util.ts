@@ -4,7 +4,6 @@ import { db, schema, sql } from './db'
 import { Event } from './schema'
 import { and } from 'drizzle-orm'
 
-
 /**
  * Get all events in a day range
  * @param start
@@ -24,12 +23,13 @@ import { and } from 'drizzle-orm'
  * //        updatedAt: 2019-01-31T23:00:00.000Z } ]
  */
 export const eventsInDayRange = async (start: Date, end: Date) => {
-  console.log(`${schema.event.startTime} >= ${start.getTime()}`)
+  console.log(`Querying events from ${start.toISOString()} to ${end.toISOString()}`)
   const events = await db
     .select()
     .from(schema.event)
-    .where(and(sql`${schema.event.startTime} >= ${start.getTime()}`,
-      sql`${schema.event.startTime} < ${end.getTime()}`))
+    .where(and(sql`${schema.event.startTime} >= ${start.getTime()}`, sql`${schema.event.startTime} < ${end.getTime()}`))
+    .execute() // Make sure to execute the query
 
+  console.log(`Found ${events.length} events`)
   return events
 }

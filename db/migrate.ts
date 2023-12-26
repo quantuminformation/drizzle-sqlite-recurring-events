@@ -1,4 +1,4 @@
-import { migrate } from 'drizzle-orm/better-sqlite3/migrator'
-import { db } from './db'
+import {migrateWrapper} from "./migrateUtil";
 
-migrate(db, { migrationsFolder: './drizzle' })
+
+await migrateWrapper()

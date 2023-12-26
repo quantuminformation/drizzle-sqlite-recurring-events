@@ -4,8 +4,8 @@ import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 export const event = sqliteTable('event', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   name: text('name').notNull(),
-  startTime: integer('start_time', { mode: 'timestamp' }).notNull(),
-  endTime: integer('end_time', { mode: 'timestamp' }).notNull(),
+  startTime: integer('start_time', { mode: 'timestamp_ms' }).notNull(),
+  endTime: integer('end_time', { mode: 'timestamp_ms' }).notNull(),
   createdAt: integer('created_at', { mode: 'timestamp_ms' })
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
