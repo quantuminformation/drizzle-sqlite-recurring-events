@@ -36,3 +36,22 @@ export const eventDayZero11_13: Event = {
 }
 
 export const allDayZeroEvents = [eventDayZero10_12, eventDayZero11_13]
+
+export const eventDayOne09_13: Event = {
+  name: 'Event 1.1',
+  startTime: new Date(dayOne.getTime() + 9 * MILLISECONDS_IN_AN_HOUR),
+  endTime: new Date(dayOne.getTime() + 13 * MILLISECONDS_IN_AN_HOUR),
+}
+export const eventDayOne10_12: Event = {
+  name: 'Event 1.2',
+  startTime: new Date(dayOne.getTime() + 10 * MILLISECONDS_IN_AN_HOUR),
+  endTime: new Date(dayOne.getTime() + 12 * MILLISECONDS_IN_AN_HOUR),
+}
+export const eventDayOne11_13: Event = {
+  name: 'Event 1.3',
+  startTime: new Date(dayOne.getTime() + 11 * MILLISECONDS_IN_AN_HOUR),
+  endTime: new Date(dayOne.getTime() + 13 * MILLISECONDS_IN_AN_HOUR),
+}
+
+export const allDayOneEvents = [eventDayOne09_13, eventDayOne10_12, eventDayOne11_13]
+export const allEvents = [...allDayZeroEvents, ...allDayOneEvents]
