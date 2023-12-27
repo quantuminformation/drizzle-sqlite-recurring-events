@@ -24,13 +24,15 @@ dayTwo.setDate(dayTwo.getDate() + 2)
 export const dayMinusOne = new Date(dayZero)
 dayMinusOne.setDate(dayMinusOne.getDate() - 1)
 
-export const dayZeroOneHourEvent: Event = {
+export const eventDayZero10_12: Event = {
   name: 'Event 1',
-  startTime: dayZero,
-  endTime: new Date(dayZero.getTime() + MILLISECONDS_IN_AN_HOUR),
+  startTime: new Date(dayZero.getTime() + 10 * MILLISECONDS_IN_AN_HOUR),
+  endTime: new Date(dayZero.getTime() + 12 * MILLISECONDS_IN_AN_HOUR),
 }
-export const dayTwoOneHourEvent: Event = {
+export const eventDayZero11_13: Event = {
   name: 'Event 2',
-  startTime: dayOne,
-  endTime: new Date(dayOne.getTime() + MILLISECONDS_IN_AN_HOUR),
+  startTime: new Date(dayZero.getTime() + 11 * MILLISECONDS_IN_AN_HOUR),
+  endTime: new Date(dayZero.getTime() + 13 * MILLISECONDS_IN_AN_HOUR),
 }
+
+export const allDayZeroEvents = [eventDayZero10_12, eventDayZero11_13]
