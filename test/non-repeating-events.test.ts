@@ -26,7 +26,22 @@ describe('Event data tests', () => {
     let events = await eventsInDayRange(dayZero, dayOne)
     expect(events).toBeDefined()
     expect(events.length).toEqual(allDayZeroEvents.length)
+
     events = await eventsInDayRange(dayZero, dayTwo)
     expect(events.length).toEqual(allDayOneEvents.length + allDayZeroEvents.length)
+
+    //check time comparison accuracy by searching a millisecond after the event eventDayZero10_12
+    events = await eventsInDayRange(
+      new Date(eventDayZero10_12.startTime.getTime()),
+      new Date(eventDayZero10_12.startTime.getTime() + 1),
+    )
+    expect(events.length).toEqual(1)
+
+    //check time comparison accuracy by searching +1 & +2 millisecond after the event eventDayZero10_12
+    events = await eventsInDayRange(
+      new Date(eventDayZero10_12.startTime.getTime() + 1),
+      new Date(eventDayZero10_12.startTime.getTime() + 2),
+    )
+    expect(events.length).toEqual(0)
   })
 })
