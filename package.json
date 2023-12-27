@@ -10,7 +10,8 @@
     "db:reset": "concurrently -m 1 -c auto pnpm:db:delete pnpm:db:migrate pnpm:db:seed",
     "lint": "tsc -p tsconfig.json --noEmit --skipLibCheck --pretty",
     "prettier": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,html}\"",
-    "test": "vitest run",
+    "test": "concurrently -m 1 -c auto pnpm:db:reset  pnpm:test:vitest",
+    "test:vitest": "vitest run",
     "test:watch": "vitest watch"
   },
   "dependencies": {

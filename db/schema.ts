@@ -15,7 +15,7 @@ export const event = sqliteTable('event', {
   deletedAt: integer('deleted_at', { mode: 'timestamp_ms' }),
   is_recurring: integer('is_recurring', { mode: 'boolean' }),
 })
-export type Event = typeof event.$inferSelect
+export type Event = typeof event.$inferInsert
 
 // Define the recurring_type table
 export const recurring_type = sqliteTable('recurring_type', {

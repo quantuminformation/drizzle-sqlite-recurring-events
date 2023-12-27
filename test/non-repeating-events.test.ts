@@ -19,9 +19,7 @@ import { migrateWrapper } from '../db/migrateUtil'
 import { fileURLToPath } from 'url'
 import { dirname, resolve, join } from 'path'
 
-// This will run before any tests are executed
-
-beforeAll(async () => {
+/* beforeAll(async () => {
   try {
     const __filename = fileURLToPath(import.meta.url)
     const __dirname = dirname(__filename)
@@ -45,21 +43,21 @@ beforeAll(async () => {
     await migrateWrapper()
     await seedDatabase()
   }
-})
+}) */
 describe('Event data tests', () => {
   it('should have all seeded events', async () => {
     const events = await db.select().from(schema.event)
 
     expect(events).toBeDefined()
-    expect(events.length).toEqual(allDayZeroEvents.length) // Assuming the seed function adds at least one event
-    expect(events[0].name).toBe(eventDayZero10_12.name) // Assuming the first event seeded is named 'Event 1'
-    expect(events[0].name).toBe(eventDayZero11_13.name) // Assuming the first event seeded is named 'Event 1'
+    expect(events.length).toEqual(allDayZeroEvents.length)
+    expect(events[0].name).toBe(eventDayZero10_12.name)
+    expect(events[1].name).toBe(eventDayZero11_13.name)
   })
 
   it('eventsInDayRange', async () => {
     const events = await eventsInDayRange(dayZero, dayOne)
     expect(events).toBeDefined()
-    expect(events.length).toBeGreaterThan(0) // Assuming the seed function adds at least one event
-    expect(events[0].name).toBe(eventDayZero10_12.name) // Assuming the first event seeded is named 'Event 1'
+    expect(events.length).toEqual(allDayZeroEvents.length)
+    expect(events[0].name).toBe(eventDayZero10_12.name)
   })
 })
