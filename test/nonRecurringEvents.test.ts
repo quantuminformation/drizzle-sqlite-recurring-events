@@ -1,46 +1,43 @@
 // stored in test/non-repeating-events.test.ts:
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-//import { seed } from './seed'; // Import the seed function
 import { db, schema } from '../db'
 import { eventsInDayRange } from '../db/util'
-import {
-  allDayOneEvents,
-  allDayZeroEvents,
-  allEvents,
-  dayMinusOne,
-  dayOne,
-  dayTwo,
-  dayZero,
-  eventDayZero10_12,
-  eventDayZero11_13,
-} from './test-constants'
+import { allDayOneEvents, allDayZeroEvents, allNonRecurringEvents, eventDayZero10_12 } from './nonRecurringEvents'
+import { dayOne, dayTwo, dayZero } from './test-constants'
+import { sql } from '../db/db'
 
 describe('Event data tests', () => {
-  it('should have all seeded events', async () => {
-    const events = await db.select().from(schema.event)
+  it('should have all seeded non recurring events', async () => {
+    const events = await db
+      .select()
+      .from(schema.event)
+      .where(sql`${schema.event.is_recurring} = 0`)
+
     expect(events).toBeDefined()
-    expect(events.length).toEqual(allEvents.length)
+    expect(events.length).toEqual(allNonRecurringEvents.length)
   })
 
   it('eventsInDayRanges', async () => {
-    let events = await eventsInDayRange(dayZero, dayOne)
+    let events = await eventsInDayRange(dayZero, dayOne, false)
     expect(events).toBeDefined()
+    console.log(events)
     expect(events.length).toEqual(allDayZeroEvents.length)
 
-    events = await eventsInDayRange(dayZero, dayTwo)
+    events = await eventsInDayRange(dayZero, dayTwo, false)
     expect(events.length).toEqual(allDayOneEvents.length + allDayZeroEvents.length)
 
     //check time comparison accuracy by searching a millisecond after the event eventDayZero10_12
     events = await eventsInDayRange(
-      new Date(eventDayZero10_12.startTime.getTime()),
-      new Date(eventDayZero10_12.startTime.getTime() + 1),
+      new Date(eventDayZero10_12.startDate.getTime()),
+      new Date(eventDayZero10_12.startDate.getTime() + 1),
+      false,
     )
     expect(events.length).toEqual(1)
 
     //check time comparison accuracy by searching +1 & +2 millisecond after the event eventDayZero10_12
     events = await eventsInDayRange(
-      new Date(eventDayZero10_12.startTime.getTime() + 1),
-      new Date(eventDayZero10_12.startTime.getTime() + 2),
+      new Date(eventDayZero10_12.startDate.getTime() + 1),
+      new Date(eventDayZero10_12.startDate.getTime() + 2),
     )
     expect(events.length).toEqual(0)
   })

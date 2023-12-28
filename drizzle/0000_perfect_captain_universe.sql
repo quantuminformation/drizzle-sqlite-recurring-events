@@ -6,13 +6,14 @@ CREATE TABLE `event` (
 	`created_at` integer DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`updated_at` integer DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`deleted_at` integer,
-	`is_recurring` integer
+	`is_recurring` integer DEFAULT false NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `recurring_pattern` (
 	`event_id` integer PRIMARY KEY NOT NULL,
-	`separation_count` integer NOT NULL,
+	`separation_count` integer DEFAULT 0 NOT NULL,
 	`max_num_of_occurrences` integer,
+	`end_date` integer,
 	`day_of_week` integer,
 	`week_of_month` integer,
 	`day_of_month` integer,

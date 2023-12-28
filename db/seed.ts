@@ -1,11 +1,10 @@
 import { db, schema } from './db'
-import { Event } from './schema'
-import { allDayZeroEvents, allEvents, eventDayZero10_12 } from '../test/test-constants'
+import {allNonRecurringEvents} from "../test/nonRecurringEvents";
 
 // Seed function
 export async function seedDatabase() {
   // Insert event
-  const events = await db.insert(schema.event).values(allEvents).returning()
+  const events = await db.insert(schema.event).values(allNonRecurringEvents).returning()
 
   // Insert recurring types
   await db
