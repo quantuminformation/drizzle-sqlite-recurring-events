@@ -15,6 +15,3 @@ export async function seedDatabase() {
 
   console.log('Seed complete! Added events:', events.length)
 }
-
-// Call the seed function
-//seedDatabase().catch(console.error)

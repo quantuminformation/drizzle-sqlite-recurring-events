@@ -7,10 +7,10 @@ import { eventsInDayRange } from '../db/util'
 import { resetDatabase } from './testUtils'
 
 // console.log('yearly-recurring-events.test.ts')
-beforeAll(async () => {
+/*beforeAll(async () => {
   await resetDatabase()
   await seedRecurringEvents()
-})
+})*/
 
 describe('Year recurring events tests', () => {
   it.skip('should have all seeded events', async () => {

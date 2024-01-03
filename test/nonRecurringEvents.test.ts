@@ -9,10 +9,10 @@ import { seedDatabase } from '../db/seed'
 import { resetDatabase } from './testUtils'
 
 console.log('nonRecurringEvents.test.ts')
-beforeAll(async () => {
+/*beforeAll(async () => {
   await resetDatabase()
   await seedDatabase()
-})
+})*/
 
 describe('Event data tests', () => {
   it('should have all seeded non recurring events', async () => {

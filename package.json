@@ -4,15 +4,14 @@
   "scripts": {
     "db:migrate:create": "drizzle-kit generate:sqlite --config drizzle.config.ts",
     "db:migrate": "tsx db/migrate.ts",
-    "db:seed": "tsx db/seed.ts",
+    "db:seed": "tsx db/seedCall.ts",
     "db:seed:search": "tsx app/lib/search/seed.ts",
     "db:delete": "rm sqlite.db",
     "db:reset": "concurrently -m 1 -c auto pnpm:db:delete pnpm:db:migrate pnpm:db:seed",
     "lint": "tsc -p tsconfig.json --noEmit --skipLibCheck --pretty",
     "prettier": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,html}\"",
-    "test:oldz": "concurrently -m 1 -c auto pnpm:db:reset  pnpm:test:vitest",
+    "test": "concurrently -m 1 -c auto pnpm:db:reset  pnpm:test:vitest",
     "test:vitest": "vitest run",
-    "test": "vitest run",
     "test:watch": "vitest watch"
   },
   "dependencies": {
