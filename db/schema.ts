@@ -30,13 +30,13 @@ export const recurring_pattern = sqliteTable(
     event_id: integer('event_id')
       .notNull()
       .references(() => event.id, { onDelete: 'cascade' }),
-    separation_count: integer('separation_count').notNull().default(0),
-    max_num_of_occurrences: integer('max_num_of_occurrences'),
-    end_date: integer('end_date', { mode: 'timestamp_ms' }),
-    day_of_week: integer('day_of_week'),
-    week_of_month: integer('week_of_month'),
-    day_of_month: integer('day_of_month'),
-    month_of_year: integer('month_of_year'),
+    separationCount: integer('separation_count').notNull().default(0),
+    maxOccurrences: integer('max_num_of_occurrences'),
+    endDate: integer('end_date', { mode: 'timestamp_ms' }),
+    dayOfWeek: integer('day_of_week'),
+    weekOfMonth: integer('week_of_month'),
+    dayOfMonth: integer('day_of_month'),
+    monthOfYear: integer('month_of_year'),
     recurring_type_id: integer('recurring_type_id').references(() => recurring_type.id),
   },
   (table) => ({

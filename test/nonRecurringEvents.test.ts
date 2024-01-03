@@ -5,6 +5,14 @@ import { eventsInDayRange } from '../db/util'
 import { allDayOneEvents, allDayZeroEvents, allNonRecurringEvents, eventDayZero10_12 } from './nonRecurringEvents'
 import { dayOne, dayTwo, dayZero } from './test-constants'
 import { sql } from '../db/db'
+import { seedDatabase } from '../db/seed'
+import { resetDatabase } from './testUtils'
+
+console.log('nonRecurringEvents.test.ts')
+beforeAll(async () => {
+  await resetDatabase()
+  await seedDatabase()
+})
 
 describe('Event data tests', () => {
   it('should have all seeded non recurring events', async () => {
@@ -20,7 +28,6 @@ describe('Event data tests', () => {
   it('eventsInDayRanges', async () => {
     let events = await eventsInDayRange(dayZero, dayOne, false)
     expect(events).toBeDefined()
-    console.log(events)
     expect(events.length).toEqual(allDayZeroEvents.length)
 
     events = await eventsInDayRange(dayZero, dayTwo, false)

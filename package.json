@@ -10,8 +10,9 @@
     "db:reset": "concurrently -m 1 -c auto pnpm:db:delete pnpm:db:migrate pnpm:db:seed",
     "lint": "tsc -p tsconfig.json --noEmit --skipLibCheck --pretty",
     "prettier": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,html}\"",
-    "test": "concurrently -m 1 -c auto pnpm:db:reset  pnpm:test:vitest",
+    "test:oldz": "concurrently -m 1 -c auto pnpm:db:reset  pnpm:test:vitest",
     "test:vitest": "vitest run",
+    "test": "vitest run",
     "test:watch": "vitest watch"
   },
   "dependencies": {
@@ -19,14 +20,17 @@
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
-    "drizzle-kit": "^0.20.7",
+    "drizzle-kit": "latest",
     "drizzle-orm": "latest",
     "prettier": "^3.1.1",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
-    "vitest": "^1.1.0"
+    "vitest": "latest"
   },
   "volta": {
     "node": "20.9.0"
+  },
+  "vitest": {
+    "maxConcurrency": 1
   }
 }
