@@ -12,7 +12,7 @@ export const MILLISECONDS_IN_AN_HOUR = 60 * 60 * 1000
 export const MILLISECONDS_IN_A_DAY = 24 * MILLISECONDS_IN_AN_HOUR
 export const MILLISECONDS_IN_A_YEAR = 365 * MILLISECONDS_IN_A_DAY
 
-// trickle down constants
+// trickle down constants assume js date as the standard
 export const dayZeroYear = 2025
 export const dayZeroMonth = 0
 export const dayZeroDay = 1

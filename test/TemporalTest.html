@@ -1,0 +1,19 @@
+<!doctype html>
+
+<script src="https://cdn.jsdelivr.net/npm/temporal-polyfill@0.2.0/global.min.js"></script>
+<script>
+  const today = Temporal.Now.plainDateTimeISO()
+  console.log(today.toString())
+  // 2022-04-02T15:54:14.92305492
+
+  const date = new Temporal.PlainDateTime(2022, 1, 1)
+  console.log(date.toString())
+  // 2022-01-01T00:00:00
+
+  const date1 = Temporal.PlainDateTime.from('2022-01-01')
+  console.log(date1.toString())
+  // 2022-01-01T00:00:00
+  const date2 = Temporal.PlainDateTime.from({ year: 2022, month: 1, day: 1 })
+  console.log(date2.toString())
+  // 2022-01-01T00:00:00
+</script>
