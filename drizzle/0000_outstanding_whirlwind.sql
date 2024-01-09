@@ -1,7 +1,7 @@
 CREATE TABLE `event` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`name` text NOT NULL,
-	`start_time` integer NOT NULL,
+	`start_time` text NOT NULL,
 	`end_time` integer NOT NULL,
 	`created_at` integer DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`updated_at` integer DEFAULT CURRENT_TIMESTAMP NOT NULL,

@@ -1,3 +1,4 @@
+import { Temporal } from 'temporal-polyfill'
 import { Event, RecurringPattern } from '../db/schema'
 
 // mirrors the data seeded
@@ -14,21 +15,27 @@ export const MILLISECONDS_IN_A_YEAR = 365 * MILLISECONDS_IN_A_DAY
 
 // trickle down constants assume js date as the standard
 export const dayZeroYear = 2025
-export const dayZeroMonth = 0
+export const dayZeroMonth = 1
 export const dayZeroDay = 1
-export const dayZero = new Date(Date.UTC(dayZeroYear, dayZeroMonth, dayZeroDay, 0, 0, 0))
 
-// make a new date object one day after dayZero
-export const dayOne = new Date(dayZero)
-dayOne.setDate(dayOne.getDate() + 1)
+//initialize a temporal object for dayZero and log a unix timestamp from it
+export const dayZero = Temporal.PlainDateTime.from({
+  year: dayZeroYear,
+  month: dayZeroMonth,
+  day: dayZeroDay,
+})
+  .toZonedDateTime('UTC')
+  .toInstant()
 
-// make a new date object two days after dayZero
-export const dayTwo = new Date(dayZero)
-dayTwo.setDate(dayTwo.getDate() + 2)
+//export const dayZero = Temporal.Instant.from(`${`${dayZeroYear}-${dayZeroMonth}-${dayZeroDay}`}T00:00Z`)
 
-// make a new date object minus one day from dayZero
-export const dayMinusOne = new Date(dayZero)
-dayMinusOne.setDate(dayMinusOne.getDate() - 1)
-
-console.log(`dayZero: ${dayZero.toISOString()}`)
 console.log(`dayZero: ${dayZero}`)
+console.log(`dayZero: ${dayZero.epochMilliseconds}`)
+
+// make a new temporal object one day after dayZero
+export const dayOne = Temporal.Instant.from(dayZero).add({ days: 1 })
+
+console.log(`dayOne: ${dayOne}`)
+export const dayTwo = Temporal.Instant.from(dayZero).add({ days: 2 })
+
+export const dayMinusOne = Temporal.Instant.from(dayZero).add({ days: -1 })

@@ -4,15 +4,15 @@ import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 export const event = sqliteTable('event', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   name: text('name').notNull(),
-  startDate: integer('start_time', { mode: 'timestamp_ms' }).notNull(),
-  endDate: integer('end_time', { mode: 'timestamp_ms' }).notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+  startDate: integer('start_time').notNull(),
+  endDate: integer('end_time').notNull(),
+  createdAt: integer('created_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+  updatedAt: integer('updated_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  deletedAt: integer('deleted_at', { mode: 'timestamp_ms' }),
+  deletedAt: integer('deleted_at'),
   is_recurring: integer('is_recurring', { mode: 'boolean' }).notNull().default(false),
 })
 export type Event = typeof event.$inferInsert
@@ -32,7 +32,7 @@ export const recurring_pattern = sqliteTable(
       .references(() => event.id, { onDelete: 'cascade' }),
     separationCount: integer('separation_count').notNull().default(0),
     maxOccurrences: integer('max_num_of_occurrences'),
-    endDate: integer('end_date', { mode: 'timestamp_ms' }),
+    endDate: integer('end_date'),
     dayOfWeek: integer('day_of_week'),
     weekOfMonth: integer('week_of_month'),
     dayOfMonth: integer('day_of_month'),

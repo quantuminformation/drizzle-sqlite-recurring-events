@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "bbe43372-e2a2-4236-b877-88e3209860f6",
+  "id": "295cad93-f0f2-4acd-82ca-9ed2c6107127",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "event": {
@@ -23,7 +23,7 @@
         },
         "start_time": {
           "name": "start_time",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false

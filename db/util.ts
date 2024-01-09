@@ -1,3 +1,4 @@
+import { type Temporal } from 'temporal-polyfill'
 import { db, eq, schema, sql } from './db'
 import { Event, RecurringPattern } from './schema'
 import { and, or } from 'drizzle-orm'
@@ -6,12 +7,16 @@ import { and, or } from 'drizzle-orm'
  * Get all events (and event recurrances) whose UNIX timestamp start is within a range.
  * Optionally include or exclude recurring events based on the includeRecurring flag.
  */
-export const eventsInDayRange = async (rangeStart: Date, rangeEnd: Date, includeRecurring: boolean = true) => {
-  console.log(`Querying events from ${rangeStart.toISOString()} to ${rangeEnd.toISOString()}`)
+export const eventsInDayRange = async (
+  rangeStart: Temporal.Instant,
+  rangeEnd: Temporal.Instant,
+  includeRecurring: boolean = true,
+) => {
+  console.log(`Querying events from ${rangeStart} to ${rangeEnd}`)
 
   const filters = [
-    sql`${schema.event.startDate} >= ${rangeStart.getTime()}`,
-    sql`${schema.event.startDate} < ${rangeEnd.getTime()}`,
+    sql`${schema.event.startDate} >= ${rangeStart.epochMilliseconds}`,
+    sql`${schema.event.startDate} < ${rangeEnd.epochMilliseconds}`,
   ]
   if (!includeRecurring) {
     filters.push(eq(schema.event.is_recurring, false))
