@@ -1,10 +1,11 @@
 import { relations, sql } from 'drizzle-orm'
-import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { integer, primaryKey, sqliteTable, text, customType } from 'drizzle-orm/sqlite-core'
+import { customTemporal } from 'utils/temporalType'
 
 export const event = sqliteTable('event', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   name: text('name').notNull(),
-  startDate: integer('start_time').notNull(),
+  startDate: customTemporal('start_time').notNull(),
   endDate: integer('end_time').notNull(),
   createdAt: integer('created_at')
     .notNull()

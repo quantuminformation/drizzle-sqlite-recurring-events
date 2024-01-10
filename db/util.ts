@@ -1,4 +1,4 @@
-import { type Temporal } from 'temporal-polyfill'
+import { Temporal } from 'temporal-polyfill'
 import { db, eq, schema, sql } from './db'
 import { Event, RecurringPattern } from './schema'
 import { and, or } from 'drizzle-orm'
@@ -8,8 +8,8 @@ import { and, or } from 'drizzle-orm'
  * Optionally include or exclude recurring events based on the includeRecurring flag.
  */
 export const eventsInDayRange = async (
-  rangeStart: Temporal.Instant,
-  rangeEnd: Temporal.Instant,
+  rangeStart: Temporal.PlainDateTime,
+  rangeEnd: Temporal.PlainDateTime,
   includeRecurring: boolean = true,
 ) => {
   console.log(`Querying events from ${rangeStart} to ${rangeEnd}`)

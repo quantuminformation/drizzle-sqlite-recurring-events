@@ -23,9 +23,15 @@ export const dayZero = Temporal.PlainDateTime.from({
   year: dayZeroYear,
   month: dayZeroMonth,
   day: dayZeroDay,
-})
-  .toZonedDateTime('UTC')
-  .toInstant()
+}).toZonedDateTime('UTC')
+
+export const dayOne = dayZero.add({ days: 1 })
+export const dayTwo = dayZero.add({ days: 2 })
+
+//const timeZone = Temporal.TimeZone.from('UTC') // or any other timezone
+//const dayOneZonedDateTime = dayOneDT.toZonedDateTime(timeZone)
+
+//const dayOneInstant = dayOneZonedDateTime.toInstant()
 
 //export const dayZero = Temporal.Instant.from(`${`${dayZeroYear}-${dayZeroMonth}-${dayZeroDay}`}T00:00Z`)
 
@@ -33,9 +39,9 @@ console.log(`dayZero: ${dayZero}`)
 console.log(`dayZero: ${dayZero.epochMilliseconds}`)
 
 // make a new temporal object one day after dayZero
-export const dayOne = Temporal.Instant.from(dayZero).add({ days: 1 })
+//export const dayOne = Temporal.Instant.from(dayZero).add({ days: 1 })
 
 console.log(`dayOne: ${dayOne}`)
-export const dayTwo = Temporal.Instant.from(dayZero).add({ days: 2 })
+//export const dayTwo = Temporal.Instant.from(dayZero).add({ days: 2 })
 
-export const dayMinusOne = Temporal.Instant.from(dayZero).add({ days: -1 })
+//export const dayMinusOne = Temporal.Instant.from(dayZero).add({ days: -1 })

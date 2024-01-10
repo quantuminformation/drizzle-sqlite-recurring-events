@@ -35,14 +35,17 @@ describe('Event data tests', () => {
 
     //check time comparison accuracy by searching a millisecond after the event eventDayZero10_12
     events = await eventsInDayRange(
-      new Date(eventDayZero10_12.startDate.getTime()),
-      new Date(eventDayZero10_12.startDate.getTime() + 1),
+      eventDayZero10_12.startDate,
+      eventDayZero10_12.startDate.add({ milliseconds: 1 })),
       false,
     )
     expect(events.length).toEqual(1)
 
     //check time comparison accuracy by searching +1 & +2 millisecond after the event eventDayZero10_12
     events = await eventsInDayRange(
+
+
+
       new Date(eventDayZero10_12.startDate.getTime() + 1),
       new Date(eventDayZero10_12.startDate.getTime() + 2),
     )
